@@ -1,31 +1,30 @@
 {
-  "manifest_version": 2,
-  "name": "Report Viewer",
-  "description": "Display a filtered cloud-init.log",
-  "version": "1.0",
-  "options_ui": {
-    "page": "options.html",
-    "chrome_style": true
-    },
-  "browser_action": {
-    "default_icon": "icon.png",
-    "default_popup": "popup.html",
-    "default_title": "Click it"
-  },
-  "background": {
-    "page": "background.html"
-  },
-  "content_scripts": [
-    {
-      "matches": ["http://*/*log"],
-      "js": ["content.js"]
-    }
-  ],
-  "permissions": [
-    "activeTab",
-    "cookies",
-    "tabs",
-    "http://*/*", 
-    "https://*/*"
-  ]
+	"manifest_version": 2,
+	"name": "Report Viewer",
+	"description": "Display a filtered cloud-init.log",
+	"version": "0.2",
+	"options_ui": {
+		"page": "options.html",
+		"chrome_style": true
+	},
+	"browser_action": {
+		"default_icon": "icon.png",
+		"default_popup": "popup.html",
+		"default_title": "Click it"
+	},
+	"background": {
+		"page": "background.html"
+	},
+	"content_scripts": [{
+		"matches": ["http://*/*log"],
+		"js": ["content.js"]
+	}],
+	"permissions": [
+		"activeTab",
+		"cookies",
+		"storage",
+		"tabs",
+		"http://*/*",
+		"https://*/*"
+	]
 }

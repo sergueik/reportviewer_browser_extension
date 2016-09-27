@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <!--
- This provide optionsto Report Viewer.
+ This provide options to Report Viewer.
  origin: https://developer.chrome.com/extensions/options
  -->
 <html>
@@ -9,27 +9,33 @@
     <title>Report Viewer Options</title>
     
     <style>
+      div {margin: 1em;
+      }
       body {
         font-family: "Segoe UI", "Lucida Grande", Tahoma, sans-serif;
         font-size: .8em;
       }
     </style>
-  <script src="options.js"></script>
   </head>
 <body>
-
+<div>
 Filter:
 <select id="filter">
  <option value="errors">errors</option>
- <option value="serverspec summary">serverspec summary</option>
- <option value="specific resource">specific resource</option>
+ <option value="resource">resource</option>
+ <option value="spec">spec</option>
 </select>
 <br/>
+</div>
+
+<div>
 <label>
-Filter:
+Resorce:
 </label>
-<input type="text" id="resource" value="">
+<input type="text" id="name" value="">
+</div>
 <br/><div id="status"></div>
-<br/><button id="save">Save</button>
+  <br/><button id="save">Save</button>
+  <script src="options.js"></script>
 </body>
 </html>
