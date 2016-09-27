@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<!--
+ This provide optionsto Report Viewer.
+ origin: https://developer.chrome.com/extensions/options
+ -->
+<html>
+  <head>
+    <title>Report Viewer Options</title>
+    
+    <style>
+      body {
+        font-family: "Segoe UI", "Lucida Grande", Tahoma, sans-serif;
+        font-size: .8em;
+      }
+    </style>
+  <script src="options.js"></script>
+  </head>
+<body>
+
+Filter:
+<select id="filter">
+ <option value="errors">errors</option>
+ <option value="serverspec summary">serverspec summary</option>
+ <option value="specific resource">specific resource</option>
+</select>
+<br/>
+<label>
+Filter:
+</label>
+<input type="text" id="resource" value="">
+<br/><div id="status"></div>
+<br/><button id="save">Save</button>
+</body>
+</html>
