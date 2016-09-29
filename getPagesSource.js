@@ -12,27 +12,31 @@ function DOMtoString(document_root) {
 				for (line_cnt = 0; line_cnt < log_lines.length; line_cnt++) {
 					log_line = log_lines[line_cnt];
 					if (config.filter == 'errors') {
-						var resource_pattern = new RegExp('(?:failed|failures)');
-						if (resource_pattern.test(log_line)) {
-							var main_header = new RegExp('/Stage\\[.*/([^/.]+)/([^/.]+):\\s+');
-							log_line = log_line.replace(main_header, '$1/$2: ');
-							var dependency_header = new RegExp('/Stage\\[.*/([^/.]+):\\s+Dependency');
-							log_line = log_line.replace(dependency_header, '$1: Dependency');
-							var header = new RegExp('/Stage\\[.*/([^/.]+):\\s+Dependency');
-							log_line = log_line.replace(header, '$1: Dependency');
-							var remove_patterns = ['\\d{2,2}\\-\\d{2,2}\\-\\d{2,2}\\s+[\\d:]+\\s+',
-								// '/Stage\\[.*\\]:\\s+Dependency',
-								'\\[pid:\\d+\\]\\s+',
-								'(?:cloud-provisioner.subprocess|cloud-provisioner)',
-								'\\s+INFO:\\s+',
-								'(?:Notice|returns):',
-								'\\[\\d?m',
-								'.\\[1;31m',
-							];
-							for (var cnt = 0; cnt < remove_patterns.length; cnt++) {
-								log_line = log_line.replace(new RegExp(remove_patterns[cnt], 'g'), '');
+
+						var ignore_error_pattern = new RegExp('(?:error_(?:pwd|uuid|user|fqdn)|ignoring certificate|not using cache on failed catalog|initial tags run failed|skipping run)', 'i');
+						var error_pattern = new RegExp('(?:failed|failures|error)', 'i');
+						if (error_pattern.test(log_line)) {
+							if (!ignore_error_pattern.test(log_line)) {
+								var main_header = new RegExp('/Stage\\[.*/([^/.]+)/([^/.]+):\\s+');
+								log_line = log_line.replace(main_header, '$1/$2: ');
+								var dependency_header = new RegExp('/Stage\\[.*/([^/.]+):\\s+Dependency');
+								log_line = log_line.replace(dependency_header, '$1: Dependency');
+								var header = new RegExp('/Stage\\[.*/([^/.]+):\\s+Dependency');
+								log_line = log_line.replace(header, '$1: Dependency');
+								var remove_patterns = ['\\d{2,2}\\-\\d{2,2}\\-\\d{2,2}\\s+[\\d:]+\\s+',
+									// '/Stage\\[.*\\]:\\s+Dependency',
+									'\\[pid:\\d+\\]\\s+',
+									'(?:cloud-provisioner.subprocess|cloud-provisioner)',
+									'\\s+INFO:\\s+',
+									'(?:Notice|returns):',
+									'\\[\\d?m',
+									'.\\[1;31m',
+								];
+								for (var cnt = 0; cnt < remove_patterns.length; cnt++) {
+									log_line = log_line.replace(new RegExp(remove_patterns[cnt], 'g'), '');
+								}
+								matching_lines.push(log_line);
 							}
-							matching_lines.push(log_line);
 						}
 					}
 					if (config.filter == 'spec') {
