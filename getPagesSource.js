@@ -1,36 +1,44 @@
 function DOMtoString(document_root) {
 	var html = '';
+	var cnt = 0;
 	var node = document_root.firstChild;
-	while (node) {
+	while (node && cnt == 0) {
 		switch (node.nodeType) {
 			case Node.ELEMENT_NODE:
-				var process = false;
+				var process = true;
 				if (process) {
+					// alert('filter: ' + config.filter+ '\n' + 'reporter: ' + config.reporter + '\n' + 'cnt: ' + cnt );
 					var data = node.innerHTML;
 					var log_lines = data.split(/\n/);
 					var matching_lines = '';
 					var count = log_lines.length;
 					for (i = 0; i < count; i++) {
 						log_line = log_lines[i];
-						var resource_pattern = new RegExp('/Stage.*Exec\\[reporter\\]');
-						if (resource_pattern.test(log_line)) {
-							var matching_line = log_line.replace(resource_pattern, '');
-							for (var remove_part in [
-									'[\\d-]+\\s+[\\d:]+\\s+', // timestamp
-									'\\[pid:\\d+\\]\\s+', // pid
-									'(?:cloud-provisioner.subprocess|) INFO:', // wrapper 
-									'(Notice:|returns:)', // message category
-									'\\[\\d?m' // text attribute character 
-								]) {
-								matching_line = matching_line.replace(new RegExp(remove_part, 'g'), '');
+						if (config.filter == 'spec') {
+							var resource_pattern = new RegExp('/Stage.*Exec\\[reporter\\]/');
+							if (resource_pattern.test(log_line)) {
+								var matching_line = log_line.replace(resource_pattern, '');
+
+								var remove_patterns = ['\\d{2,2}\\-\\d{2,2}\\-\\d{2,2}\\s+[\\d:]+\\s+',
+									'\\[pid:\\d+\\]\\s+',
+									'(?:cloud-provisioner.subprocess|cloud-provisioner)',
+									'\\s+INFO:\\s+',
+									'(?:Notice|returns):',
+									'\\[\\d?m'
+								];
+								for (var cnt = 0; cnt < remove_patterns.length; cnt++) {
+									var p = new RegExp(remove_patterns[cnt], 'g')
+									matching_line = matching_line.replace(p, '');
+								}
+								matching_lines += matching_line + '\n';
 							}
-							matching_lines += matching_line + '\n';
-							// matching_lines += log_line.replace(patt, '').replace(date_header, '').replace(pid_header, '').replace(provisioner_header, '').replace(misc_header1, '').replace(misc_header2, '') + '\n';
 						}
 					}
 					html += matching_lines;
 					// Summary 
 					html += matching_lines.length + ' lines';
+					cnt++;
+
 				} else {
 					html += node.outerHTML;
 				}

@@ -1,4 +1,4 @@
-// Saves options to chrome.storage
+// Saves  and restores options with chrome.storage
 function save_options() {
 	var filter = document.getElementById('filter').value;
 	var name = document.getElementById('name').value;
@@ -15,8 +15,6 @@ function save_options() {
 	});
 }
 
-// Restores select box and text input state using the preferences
-// stored in chrome.storage.
 function restore_options() {
 	chrome.storage.sync.get({
 		filter: 'spec',
