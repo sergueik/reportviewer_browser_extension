@@ -1,7 +1,20 @@
 // Saves  and restores options with chrome.storage
 function save_options() {
+	var icons = {
+		'errors': 'e.png',
+		'spec': 's.png',
+		'resource': 'r.png'
+	};
 	var filter = document.getElementById('filter').value;
 	var name = document.getElementById('name').value;
+	try {
+		chrome.browserAction.setIcon({
+			path: icons[filter],
+			// tabId: sender.tab.id
+		});
+	} catch (ex) {
+		alert(ex);
+	}
 	chrome.storage.sync.set({
 		filter: filter,
 		name: name

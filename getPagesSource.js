@@ -14,7 +14,7 @@ function DOMtoString(document_root) {
 					if (config.filter == 'errors') {
 
 						var ignore_error_pattern = new RegExp('(?:error_(?:pwd|uuid|user|fqdn)|ignoring certificate|not using cache on failed catalog|initial tags run failed|skipping run)', 'i');
-						var error_pattern = new RegExp('(?:failed|failures|error)', 'i');
+						var error_pattern = new RegExp('(?:failed|failure|error)', 'i');
 						if (error_pattern.test(log_line)) {
 							if (!ignore_error_pattern.test(log_line)) {
 								var main_header = new RegExp('/Stage\\[.*/([^/.]+)/([^/.]+):\\s+');
@@ -23,8 +23,8 @@ function DOMtoString(document_root) {
 								log_line = log_line.replace(dependency_header, '$1: Dependency');
 								var header = new RegExp('/Stage\\[.*/([^/.]+):\\s+Dependency');
 								log_line = log_line.replace(header, '$1: Dependency');
-								var remove_patterns = ['\\d{2,2}\\-\\d{2,2}\\-\\d{2,2}\\s+[\\d:]+\\s+',
-									// '/Stage\\[.*\\]:\\s+Dependency',
+								var remove_patterns = [
+                  '\\d{2,2}\\-\\d{2,2}\\-\\d{2,2}\\s+[\\d:]+\\s+',
 									'\\[pid:\\d+\\]\\s+',
 									'(?:cloud-provisioner.subprocess|cloud-provisioner)',
 									'\\s+INFO:\\s+',
