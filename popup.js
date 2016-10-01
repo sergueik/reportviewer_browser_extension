@@ -1,6 +1,6 @@
 chrome.runtime.onMessage.addListener(function(request, sender) {
-	if (request.action == "getSource") {
-		message.innerText = request.source;
+	if (request.action == 'getSource') {
+    message.innerHTML = request.source;
 	}
 });
 
@@ -8,14 +8,14 @@ function onWindowLoad() {
 
 	var message = document.querySelector('#message');
 	chrome.storage.sync.get({
-		filter: 'spec',
-		name: ''
+		filter: '',
+		resource_title: ''
 	}, function(items) {
-		document.getElementById('filter').value = items.filter;
-		document.getElementById('reporter').value = items.name;
+		// document.getElementById('filter').value = items.filter;
+		// document.getElementById('resource_title').value = items.resource_title;
 		var config = {
 			filter: items.filter,
-			resource: items.name
+			resource_title: items.resource_title
 		};
 
 		chrome.tabs.executeScript(null, {

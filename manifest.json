@@ -3,7 +3,7 @@
 	"name": "Report Viewer",
 	"description": "Display a filtered cloud-init.log",
   "homepage_url": "https://github.com/sergueik/reportviewer_browser_extension",
-	"version": "0.4.0",
+	"version": "0.5.0",
 	"options_ui": {
 		"page": "options.html",
 		"chrome_style": true

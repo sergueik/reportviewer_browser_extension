@@ -6,7 +6,7 @@ function save_options() {
 		'resource': 'r.png'
 	};
 	var filter = document.getElementById('filter').value;
-	var name = document.getElementById('name').value;
+	var resource_title = document.getElementById('resource_title').value;
 	try {
 		chrome.browserAction.setIcon({
 			path: icons[filter],
@@ -17,7 +17,7 @@ function save_options() {
 	}
 	chrome.storage.sync.set({
 		filter: filter,
-		name: name
+		resource_title: resource_title
 	}, function() {
 		// Update status to inform user options were saved.
 		var status = document.getElementById('status');
@@ -31,10 +31,10 @@ function save_options() {
 function restore_options() {
 	chrome.storage.sync.get({
 		filter: 'spec',
-		name: ''
+		resource_title: 'Splunk'
 	}, function(items) {
 		document.getElementById('filter').value = items.filter;
-		document.getElementById('name').value = items.name;
+		document.getElementById('resource_title').value = items.resource_title;
 	});
 }
 document.addEventListener('DOMContentLoaded', restore_options);
