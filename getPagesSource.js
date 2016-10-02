@@ -26,12 +26,13 @@ function DOMtoString(document_root) {
 								'(?:Notice|returns):',
 								'\\[\\d?m',
 								'.\\[1;31m',
-							];
+								String.fromCharCode( 27) // escape
+								];
 							for (var cnt = 0; cnt < remove_patterns.length; cnt++) {
 								log_line = log_line.replace(new RegExp(remove_patterns[cnt], 'g'), '');
 							}
 							even_line = !even_line;
-							line_class = (even_line) ? 'class="even"' : 'class="odd"';
+							line_class = 'class=' +((even_line) ? '"even"' : '"odd"');
 							matching_lines.push('<span ' + line_class + '>' + log_line.trim() + '</span>');
 						}
 					}
@@ -61,13 +62,13 @@ function DOMtoString(document_root) {
 									'(?:Notice|returns):',
 									'\\[\\d?m',
 									'.\\[1;31m',
+									String.fromCharCode( 27) // escape
 								];
 								for (var cnt = 0; cnt < remove_patterns.length; cnt++) {
 									log_line = log_line.replace(new RegExp(remove_patterns[cnt], 'g'), '');
 								}
-								// matching_lines.push(log_line);
 								even_line = !even_line;
-								line_class = (even_line) ? 'class="even"' : 'class="odd"';
+								line_class = 'class=' +((even_line) ? '"even"' : '"odd"');
 								matching_lines.push('<span ' + line_class + '>' + log_line.trim() + '</span>');
 							}
 						}
@@ -81,15 +82,15 @@ function DOMtoString(document_root) {
 								'(?:cloud-provisioner.subprocess|cloud-provisioner)',
 								'\\s+INFO:\\s+',
 								'(?:Notice|returns):',
-								'\\[\\d?m'
+								'\\[\\d?m',
+								String.fromCharCode( 27) // escape
 							];
 							for (var cnt = 0; cnt < remove_patterns.length; cnt++) {
 								log_line = log_line.replace(new RegExp(remove_patterns[cnt], 'g'), '');
 							}
 							even_line = !even_line;
-							line_class = (even_line) ? 'class="even"' : 'class="odd"';
-							log_line = log_line.replace(new RegExp('^\\s+|\\s+$', 'g'), '');
-							matching_lines.push('<span ' + line_class + '>' + log_line + '</span>');
+							line_class = 'class=' +((even_line) ? '"even"' : '"odd"');
+							matching_lines.push('<span ' + line_class + '>' + log_line.trim() + '</span>');
 						}
 					}
 				}
