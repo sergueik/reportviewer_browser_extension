@@ -14,7 +14,7 @@ function DOMtoString(document_root) {
 					log_line = log_lines[line_cnt];
 					if (config.filter == 'resource') {
 						var resource_title = config.resource_title;
-						var resource_pattern = new RegExp('/Stage.*(?:\\[' + resource_title + '\\]|/' + resource_title + ')(?:|/)');
+						var resource_pattern = new RegExp('/Stage.*(?:\\[' + resource_title + '.*' + '\\]'+'|' + '/' + resource_title + '.*' + ')(?:|/)', 'i');
 						if (resource_pattern.test(log_line)) {
 							var main_header = new RegExp('/Stage\\[.*/([^/.]+)/([^/.]+):\\s+');
 							log_line = log_line.replace(main_header, '$1/$2: ');
