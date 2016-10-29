@@ -25,7 +25,7 @@ function DOMtoString(document_root) {
 								'\\s+INFO:\\s+',
 								'(?:Notice|returns):',
 								'\\[\\d?m',
-								'.\\[1;31m',
+								'.\\[\\d;\\d{2}m',
 								String.fromCharCode( 27) // escape
 								];
 							for (var cnt = 0; cnt < remove_patterns.length; cnt++) {
@@ -61,7 +61,7 @@ function DOMtoString(document_root) {
 									'\\s+INFO:\\s+',
 									'(?:Notice|returns):',
 									'\\[\\d?m',
-									'.\\[1;31m',
+									'.\\[\\d;\\d{2}m',
 									String.fromCharCode( 27) // escape
 								];
 								for (var cnt = 0; cnt < remove_patterns.length; cnt++) {
@@ -83,7 +83,8 @@ function DOMtoString(document_root) {
 								'\\s+INFO:\\s+',
 								'(?:Notice|returns):',
 								'\\[\\d?m',
-								String.fromCharCode( 27) // escape
+								'.\\[\\d;\\d{2}m',
+							String.fromCharCode( 27) // escape
 							];
 							for (var cnt = 0; cnt < remove_patterns.length; cnt++) {
 								log_line = log_line.replace(new RegExp(remove_patterns[cnt], 'g'), '');

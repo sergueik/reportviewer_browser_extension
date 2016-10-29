@@ -11,45 +11,13 @@ body {
 	font-family: sans-serif;
 	display: inline-block;
 	font-size: .85em;
-	overflow: hidden;
-	// the built-in Chrome extension popup maximum height, width of 600px, 800px can not be overridden
+	overflow: auto;
+	// the built-in Chrome extension popup maximum height, width of 600px, 800px cannot be overridden
 	height: 400px;
 	width: 780px;
 	min-width: 790px;
 	max-width: 790px;
 }
-
-::-webkit-scrollbar {
-  //  width: 11px;
-  height: 11px;
-}
-
-::-webkit-scrollbar-button {
-	background: #c0c0c0
-}
-
-::-webkit-scrollbar-button:vertical:decrement {
-  height: 11px;
-  -webkit-border-image: url(vertical-decrement-button.png) 2 0 2 0;
-  border-color: transparent;
-  border-width: 2px 0;
-}
-
-::-webkit-scrollbar-button:vertical:increment {
-	height: 11px;
-	-webkit-border-image: url(vertical-increment-button.png) 2 0 2 0;
-	border-color: transparent;
-	border-width: 2px 0;
-}
-
-::-webkit-scrollbar-track-piece {
-  background: #e0e0e0
-}
-
-::-webkit-scrollbar-thumb {
-  background: #a0a0a0
-}​
-
 .options {
 	margin: .25em;
 	background: #dedede;
@@ -57,26 +25,27 @@ body {
 	font-size: .7em;
 }
 .even {
-	background: #dedede;
-	}
+	background: #cecece;
+}
 .odd {
 	background: #ffffff;
 }
-
 .options input[type = "text"] {
 	font-size: .7em;
 }
+
 #message {
 	white-space: pre;
-	line-height: 1.25;
-	font-family: 'Courier New', Monaco, 'Lucida Console', monospace;
+	line-height: 1.5;
+	font-family:  Monaco, 'Lucida Console', 'Courier New', monospace;
 	word-wrap:  break-word;
+	word-break: keep-all;
 	height:440px;
 	margin:0px;
-	padding:0px;
-	line-height:normal;
+	padding-left:0px;
+	padding-right:20px;
 	overflow-y: scroll;
-  overflow-x: hidden;
+	overflow-x: scroll;
 }
 </style>
 

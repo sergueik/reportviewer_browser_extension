@@ -2,8 +2,8 @@
 	"manifest_version": 2,
 	"name": "Report Viewer",
 	"description": "Display a filtered cloud-init.log",
-  "homepage_url": "https://github.com/sergueik/reportviewer_browser_extension",
-	"version": "0.6.0",
+	"homepage_url": "https://github.com/sergueik/reportviewer_browser_extension",
+	"version": "0.7.1",
 	"options_ui": {
 		"page": "options.html",
 		"chrome_style": true
