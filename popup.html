@@ -11,7 +11,7 @@ body {
 	font-family: sans-serif;
 	display: inline-block;
 	font-size: .85em;
-	overflow: auto;
+	overflow: hidden;
 	// the built-in Chrome extension popup maximum height, width of 600px, 800px cannot be overridden
 	height: 400px;
 	width: 780px;
@@ -33,9 +33,8 @@ body {
 .options input[type = "text"] {
 	font-size: .7em;
 }
-
 #message {
-	white-space: pre;
+	white-space: pre-wrap;
 	line-height: 1.5;
 	font-family:  Monaco, 'Lucida Console', 'Courier New', monospace;
 	word-wrap:  break-word;
@@ -45,8 +44,9 @@ body {
 	padding-left:0px;
 	padding-right:20px;
 	overflow-y: scroll;
-	overflow-x: scroll;
+	overflow-x: hidden;
 }
+
 </style>
 
 </head>
