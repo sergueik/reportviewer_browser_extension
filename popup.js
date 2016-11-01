@@ -1,13 +1,13 @@
 chrome.runtime.onMessage.addListener(function(request, sender) {
 	if (request.action == 'getSource') {
-    try {
-      message.innerHTML = request.source;
-      if (request.show_header) {
-        header.innerHTML = request.header;
-      }
-    } catch (e) {
-      alert('exception : ' + e.toString());
-    }
+		try {
+			message.innerHTML = request.source;
+			if (request.show_header) {
+				header.innerHTML = request.header;
+			}
+		} catch (e) {
+			alert('exception : ' + e.toString());
+		}
 	}
 });
 
@@ -18,12 +18,12 @@ function onWindowLoad() {
 		filter: '',
 		resource_title: '',
 		show_header: false
-	}, function(items) {
+	}, function(rec) {
 		chrome.tabs.executeScript(null, {
 			code: 'var config = ' + JSON.stringify({
-        filter: items.filter,
-        resource_title: items.resource_title,
-        show_header: items.show_header
+				filter: rec.filter,
+				resource_title: rec.resource_title,
+				show_header: rec.show_header
     })
 		}, function() {
 			chrome.tabs.executeScript(null, {

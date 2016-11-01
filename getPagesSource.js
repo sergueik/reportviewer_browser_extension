@@ -119,10 +119,35 @@ function DOMtoString(document_root) {
 	}
 	return html;
 }
-
+function getHeader(document_root) {
+	var html = '';
+	var even_line = false;
+	var line_class = '';
+	var node = document_root.firstChild;
+	var data = node.innerHTML;
+	html = 'this is the header mockup';
+	var log_lines = data.split(/\n/);
+	var matching_lines = [];
+	for (line_cnt = 0; line_cnt < log_lines.length; line_cnt++) {
+		log_line = log_lines[line_cnt];
+	var metadata_pattern = new RegExp('.*metadata request response\\s+\\[\\d+\\]:\\s+(.+)$', 'i');
+			if (metadata_pattern.test(log_line)) {
+				var matadata = log_line.replace(metadata_pattern, '$1');
+				html = matadata;
+				try{
+					var o =	JSON.parse(matadata);
+					html = 'branch: ' + o['meta']['branch_name'] + '\nrole: ' + o['meta']['server_role'];
+				} catch (e){
+					html = 'exception ' + e.toString();
+				}
+				break;
+			}
+	}
+	return html;
+}
 chrome.runtime.sendMessage({
 	action: 'getSource',
 	source: DOMtoString(document),
-  header: 'this is the header mockup',
-  show_header: config.show_header
+	header: getHeader(document),
+	show_header: config.show_header
 });

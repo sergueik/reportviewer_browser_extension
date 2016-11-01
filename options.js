@@ -7,12 +7,12 @@ function save_options() {
 	};
 	var filter = document.getElementById('filter').value;
 	var resource_title = document.getElementById('resource_title').value;
-  var show_header = false;
-  try {
-    show_header = document.getElementsByClassName('show_header')[0].checked ;  
-  } catch(e) {
-    alert('exception : ' + e.toString());      
-  }
+	var show_header = false;
+	try {
+		show_header = document.getElementsByClassName('show_header')[0].checked ;
+	} catch(e) {
+		alert('exception : ' + e.toString());
+	}
 	try {
 		chrome.browserAction.setIcon({
 			path: icons[filter],
@@ -39,13 +39,12 @@ function restore_options() {
 	chrome.storage.sync.get({
 		filter: 'spec',
 		resource_title: 'Splunk',
-    show_header: false
-	}, function(items) {
-		document.getElementById('filter').value = items.filter;
-		document.getElementById('resource_title').value = items.resource_title;
-    document.getElementsByClassName('show_header')[0].checked = items.show_header;
+		show_header: false
+	}, function(rec) {
+			document.getElementById('filter').value = rec.filter;
+			document.getElementById('resource_title').value = rec.resource_title;
+			document.getElementsByClassName('show_header')[0].checked = rec.show_header;
 	});
 }
 document.addEventListener('DOMContentLoaded', restore_options);
-document.getElementById('save').addEventListener('click',
-	save_options);
+document.getElementById('save').addEventListener('click', save_options);
