@@ -95,6 +95,8 @@ function DOMtoString(document_root) {
 						}
 					}
 				}
+        // header_lines = ['header line 1','header line 2','header line 3'];
+        // html += header_lines.join('\r\n');
 				html += matching_lines.join('\r\n');
 				// Summary	
 				html += '\n' + matching_lines.length + ' lines';
@@ -119,6 +121,8 @@ function DOMtoString(document_root) {
 }
 
 chrome.runtime.sendMessage({
-	action: "getSource",
-	source: DOMtoString(document)
+	action: 'getSource',
+	source: DOMtoString(document),
+  header: 'this is the header mockup',
+  show_header: config.show_header
 });
