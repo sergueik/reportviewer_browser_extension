@@ -136,7 +136,9 @@ function getHeader(document_root) {
 				html = matadata;
 				try{
 					var o =	JSON.parse(matadata);
-					html = 'branch: ' + o['meta']['branch_name'] + '\nrole: ' + o['meta']['server_role'];
+					html = 'branch: ' + o['meta']['branch_name'] + '\n' + 
+						'role: ' + o['meta']['server_role'] + '\n' + 
+						'name: ' + o['name'] ;
 				} catch (e){
 					html = 'exception ' + e.toString();
 				}
