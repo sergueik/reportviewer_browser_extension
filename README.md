@@ -1,6 +1,34 @@
 ### Info
-Chrome browser extension to extract summary from plaintext report genuinely formatted for console (e.g. the `cloud-init.log`).
-
+Chrome browser extension to extract summary from `cloud-init.log` plaintext report:
+Scans report rows for
+  * errors
+  * resource
+  * rspec
+Removes the console-oriented tty formatting
+### Reports
+#### Errors
+This filter scans throughout `cloud-init.log` for lines containing the text `failed`,`failure`, or `error`
+![errors](https://github.com/sergueik/reportviewer_browser_extension/raw/master/screenshots/capture1.png)
+#### Resource
+This filter selects `cloud-init.log` for lines containing the specific string in the header.
+![resource](https://github.com/sergueik/reportviewer_browser_extension/raw/master/screenshots/capture2.png)
+When the string is set to `splunk` the
+lines containing the following :
+```
+.../Splunk...
+```
+and
+```
+.../Package[Splunk]////
+```
+will be extracted.
+#### RSpec
+This filter extracts the rspec run log embedded in the `cloud-init.log` 
+![rspec](https://github.com/sergueik/reportviewer_browser_extension/raw/master/screenshots/capture3.png)
+Specifically lines produced by following resource
+```
+/Stage[main]/Testing_framework/Testing_framework::Run_serverspec[_apps_puppet-testing_framework]/Exec[reporter]
+```
 ### References:
 
  * Getting the source HTML of the current page
