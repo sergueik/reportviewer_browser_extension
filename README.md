@@ -8,10 +8,10 @@ Removes the console-oriented tty formatting
 ### Reports
 #### Errors
 This filter scans throughout `cloud-init.log` for lines containing the text `failed`,`failure`, or `error`
-![errors](https://github.com/sergueik/reportviewer_browser_extension/raw/master/screenshots/capture1.png)
+![errors](https://github.com/sergueik/reportviewer_browser_extension/raw/master/screenshots/capture1.PNG)
 #### Resource
 This filter selects `cloud-init.log` for lines containing the specific string in the header.
-![resource](https://github.com/sergueik/reportviewer_browser_extension/raw/master/screenshots/capture2.png)
+![resource](https://github.com/sergueik/reportviewer_browser_extension/raw/master/screenshots/capture2.PNG)
 When the string is set to `splunk` the
 lines containing the following :
 ```
@@ -24,7 +24,7 @@ and
 will be extracted.
 #### RSpec
 This filter extracts the rspec run log embedded in the `cloud-init.log` 
-![rspec](https://github.com/sergueik/reportviewer_browser_extension/raw/master/screenshots/capture3.png)
+![rspec](https://github.com/sergueik/reportviewer_browser_extension/raw/master/screenshots/capture3.PNG)
 Specifically lines produced by following resource
 ```
 /Stage[main]/Testing_framework/Testing_framework::Run_serverspec[_apps_puppet-testing_framework]/Exec[reporter]
