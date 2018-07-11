@@ -1,0 +1,42 @@
+<!doctype html>
+<html ng-app="myApp">
+<head>
+<script type='text/javascript'>
+function setup(id) {
+var processRequest = function(e){
+
+if (xhr.readyState == 4 && xhr.status == 200) {
+        var response = JSON.parse(xhr.responseText);
+        alert(id + ' => ' + response.length);
+        if (response.length > 0) {
+           document.getElementById("myDiv" + id ).style.backgroundColor = "green";
+        } else { 
+           document.getElementById("myDiv" + id ).style.backgroundColor = "red";
+        
+        }
+    }
+}
+
+var xhr = new XMLHttpRequest();
+xhr.open('GET', "https://jsonplaceholder.typicode.com/comments?postId="+ id, true);
+
+xhr.send();
+xhr.addEventListener("readystatechange", processRequest, false);
+}
+
+
+setup(20);
+setup(200);
+</script>
+</head>
+<body>
+<div style="background-color:lightblue" id ="myDiv20">
+  <p>This is a 20.</p>
+</div>
+<div style="background-color:lightblue" id ="myDiv200">
+  <p>This is a 200.</p>
+</div>
+</body>
+</html>
+
+
